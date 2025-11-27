@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kickstartu/ui/accommodations/widgets/accommodation_list_builder.dart';
 import 'package:kickstartu/ui/main_screen/application_title_text.dart';
 
 class ApplicationMainScreen extends StatelessWidget {
@@ -6,6 +7,9 @@ class ApplicationMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: ApplicationTitleText()));
+    return Scaffold(
+      appBar: AppBar(title: ApplicationTitleText()),
+      body: AccommodationListBuilder(),
+    );
   }
 }
