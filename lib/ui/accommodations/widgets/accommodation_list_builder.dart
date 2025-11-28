@@ -18,6 +18,8 @@ class AccommodationListBuilder extends StatelessWidget {
       itemBuilder: (context, index) {
         return AccommodationTile(
           title: viewModel.accommodations[index].name,
+          thumbnail: viewModel.accommodations[index].thumbnail,
+          rateValue: viewModel.accommodations[index].rate.toString(),
           ratingValue: viewModel.accommodations[index].rating.toString(),
         );
       },

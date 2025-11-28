@@ -1,15 +1,17 @@
 class AccommodationApiModel {
   AccommodationApiModel({
-    required this.serviceId,
-    required this.serviceName,
+    required this.accommodationId,
+    required this.accommodationThumbnail,
+    required this.accommodationName,
     required this.accommodationType,
     required this.accommodationRate,
-    required this.serviceRating,
+    required this.accommodationRating,
   });
 
-  final String serviceId;
-  final String serviceName;
+  final String accommodationId;
+  final String accommodationThumbnail;
+  final String accommodationName;
   final String accommodationType;
   final double accommodationRate;
-  final double serviceRating;
+  final double accommodationRating;
 }

@@ -10,21 +10,26 @@ class AccommodationServices {
         .select("*, accommodations(accommodation_type, accommodation_rate)")
         .eq("service_category", "accommodation");
 
-    final List<AccommodationApiModel> resultList = [];
+    final Iterable<Future<AccommodationApiModel>> futures = responseList.map(
+      (item) async => AccommodationApiModel(
+        accommodationId: item["service_id"],
+        accommodationThumbnail: await _getThumbnail(item["service_id"]),
+        accommodationName: item["service_name"],
+        accommodationType: item["accommodations"]["accommodation_type"],
+        accommodationRate: item["accommodations"]["accommodation_rate"]
+            .toDouble(),
+        accommodationRating: item["service_rating"].toDouble(),
+      ),
+    );
 
-    for (var item in responseList) {
-      resultList.add(
-        AccommodationApiModel(
-          serviceId: item["service_id"],
-          serviceName: item["service_name"],
-          accommodationType: item["accommodations"]["accommodation_type"],
-          accommodationRate: item["accommodations"]["accommodation_rate"]
-              .toDouble(),
-          serviceRating: item["service_rating"].toDouble(),
-        ),
-      );
-    }
+    final resultList = await Future.wait(futures);
 
     return resultList;
+  }
+
+  Future<String> _getThumbnail(String id) async {
+    return Supabase.instance.client.storage
+        .from("services/$id")
+        .getPublicUrl("thumbnail.jpg");
   }
 }

@@ -15,11 +15,12 @@ class AccommodationRepository {
     for (var item in accommodations) {
       accommodationList.add(
         AccommodationModel(
-          id: item.serviceId,
-          name: item.serviceName,
+          id: item.accommodationId,
+          thumbnail: item.accommodationThumbnail,
+          name: item.accommodationName,
           type: item.accommodationType,
           rate: item.accommodationRate,
-          rating: item.serviceRating,
+          rating: item.accommodationRating,
         ),
       );
     }
