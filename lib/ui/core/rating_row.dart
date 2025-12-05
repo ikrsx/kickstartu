@@ -7,6 +7,6 @@ class RatingRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [Icon(Icons.star, size: 12.6), Text(value)]);
+    return Row(children: [Icon(Icons.star_rounded, size: 12.6), Text(value)]);
   }
 }

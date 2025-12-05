@@ -7,16 +7,20 @@ import 'package:kickstartu/ui/core/tile_title.dart';
 class AccommodationTile extends StatelessWidget {
   const AccommodationTile({
     super.key,
-    required this.title,
     required this.thumbnail,
-    required this.rateValue,
-    required this.ratingValue,
+    required this.title,
+    required this.address,
+    required this.rate,
+    required this.rating,
+    this.onTap,
   });
 
-  final String title;
   final String thumbnail;
-  final String rateValue;
-  final String ratingValue;
+  final String title;
+  final String address;
+  final String rate;
+  final String rating;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +33,13 @@ class AccommodationTile extends StatelessWidget {
           children: [
             SizedBox(height: 6),
             TileTitle(value: title),
-            TileSubTitle(value: "Address"),
-            TileSubTitle(value: rateValue),
+            TileSubTitle(value: address),
+            TileSubTitle(value: rate),
             SizedBox(height: 6),
-            RatingRow(value: ratingValue),
+            RatingRow(value: rating),
           ],
         ),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }
