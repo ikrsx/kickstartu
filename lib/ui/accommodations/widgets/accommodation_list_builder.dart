@@ -12,18 +12,19 @@ class AccommodationListBuilder extends StatelessWidget {
     final viewModel = Provider.of<AccommodationViewModel>(context);
     viewModel.listAccommodations();
 
-    if (viewModel.accommodations.isEmpty) {
-      return Center(child: CircularProgressIndicator());
-    }
+    if (viewModel.isLoading) return Center(child: CircularProgressIndicator());
+
+    if (viewModel.error != null) return Center(child: Text(viewModel.error!));
+
     return ListView.builder(
       itemCount: viewModel.accommodations.length,
       itemBuilder: (context, index) {
         return AccommodationTile(
           title: viewModel.accommodations[index].name,
           thumbnail: viewModel.accommodations[index].thumbnail,
-          rate: viewModel.accommodations[index].rate.toString(),
-          rating: viewModel.accommodations[index].rating.toString(),
-          address: "Address",
+          rate: viewModel.accommodations[index].rate,
+          rating: viewModel.accommodations[index].rating,
+          address: viewModel.accommodations[index].address,
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => AccommodationDetailsScreen(),

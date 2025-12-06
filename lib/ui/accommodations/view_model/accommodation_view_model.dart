@@ -7,12 +7,23 @@ class AccommodationViewModel extends ChangeNotifier {
     : _repository = repository;
 
   final AccommodationRepository _repository;
+
+  String? _error;
+  bool _isLoading = true;
   List<AccommodationModel> _accommodations = [];
 
+  bool get isLoading => _isLoading;
+  String? get error => _error;
   List<AccommodationModel> get accommodations => _accommodations;
 
   Future<void> listAccommodations() async {
-    _accommodations = await _repository.getAccommodations();
-    notifyListeners();
+    try {
+      _accommodations = await _repository.getAccommodations();
+      _isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      _error = e.toString();
+      notifyListeners();
+    }
   }
 }

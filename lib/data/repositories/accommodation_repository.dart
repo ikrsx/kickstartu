@@ -8,23 +8,31 @@ class AccommodationRepository {
   final AccommodationServices _services;
 
   Future<List<AccommodationModel>> getAccommodations() async {
-    List<AccommodationModel> accommodationList = [];
+    try {
+      final accommodations = await _services.getAccommodationServices();
 
-    final accommodations = await _services.getAccommodations();
+      final futures = accommodations
+          .map(
+            (item) async => AccommodationModel(
+              id: item["service_id"],
+              name: item["service_name"],
+              rating: item["service_rating"].toString(),
+              thumbnail: await _services.getAccommodationThumbnail(
+                item["service_id"],
+              ),
+              address:
+                  await _services.getAccommodationAddress(item["service_id"]) ??
+                  "N/A",
+              rate:
+                  await _services.getAccommodationRate(item["service_id"]) ??
+                  "N/A",
+            ),
+          )
+          .toList();
 
-    for (var item in accommodations) {
-      accommodationList.add(
-        AccommodationModel(
-          id: item.accommodationId,
-          thumbnail: item.accommodationThumbnail,
-          name: item.accommodationName,
-          type: item.accommodationType,
-          rate: item.accommodationRate,
-          rating: item.accommodationRating,
-        ),
-      );
+      return await Future.wait(futures);
+    } catch (e) {
+      throw Exception("Failed to load accommodations");
     }
-
-    return accommodationList;
   }
 }
