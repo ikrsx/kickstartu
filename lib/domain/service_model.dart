@@ -1,0 +1,17 @@
+class ServiceModel {
+  ServiceModel({
+    required this.id,
+    required this.thumbnail,
+    required this.name,
+    required this.rating,
+    required this.address,
+    this.landmark,
+  });
+
+  final String id;
+  final String thumbnail;
+  final String name;
+  final String rating;
+  final String address;
+  final String? landmark;
+}

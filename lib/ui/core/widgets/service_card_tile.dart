@@ -21,6 +21,7 @@ class ServiceCardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card.filled(
+      margin: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       child: ListTile(
         onTap: onTap,
 
@@ -30,6 +31,7 @@ class ServiceCardTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _ServiceThumbnail(thumbnailUrl: thumbnailUrl),
+            SizedBox(height: 8),
             _ServiceTitleText(titleString: titleString),
           ],
         ),
@@ -41,6 +43,7 @@ class ServiceCardTile extends StatelessWidget {
           children: [
             RatingRow(value: ratingValue),
             Text(addressString),
+            SizedBox(height: 8),
           ],
         ),
       ),
@@ -56,7 +59,10 @@ class _ServiceThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder(fallbackHeight: 215);
+    return ClipRRect(
+      borderRadius: BorderRadiusGeometry.circular(8),
+      child: Image.network(thumbnailUrl),
+    );
   }
 }
 

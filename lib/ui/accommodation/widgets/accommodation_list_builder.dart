@@ -1,26 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:kickstartu/ui/accommodation/screens/accommodation_details_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:kickstartu/ui/core/widgets/service_card_tile.dart';
+import 'package:kickstartu/ui/core/widgets/application_error_widget.dart';
+import 'package:kickstartu/ui/accommodation/screens/accommodation_details_screen.dart';
+import 'package:kickstartu/ui/accommodation/view_model/accommodation_view_model.dart';
 
 class AccommodationListBuilder extends StatelessWidget {
   const AccommodationListBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<AccommodationViewModel>(context);
+    viewModel.getAccommodations();
+
+    if (viewModel.accommodations.isEmpty) {
+      return Center(child: CircularProgressIndicator());
+    }
+
+    if (viewModel.error != null) {
+      return ApplicationErrorWidget(errorString: viewModel.error!);
+    }
+
     return ListView.builder(
-      itemBuilder: (context, index) => ServiceCardTile(
+      itemBuilder: (_, index) => ServiceCardTile(
         // Values of Fetched Cards
-        thumbnailUrl: "Url",
-        titleString: "Service Title",
-        ratingValue: "Rating",
-        addressString: "Service Address",
+        thumbnailUrl: viewModel.accommodations[index].thumbnail,
+        titleString: viewModel.accommodations[index].name,
+        ratingValue: viewModel.accommodations[index].rating,
+        addressString: viewModel.accommodations[index].address,
 
         // Open Details Screen When Tapped On A Card
         onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => AccommodationDetailsScreen()),
+          MaterialPageRoute(
+            builder: (_) => AccommodationDetailsScreen(
+              id: viewModel.accommodations[index].id,
+            ),
+          ),
         ),
       ),
-      itemCount: 1,
+      itemCount: viewModel.accommodations.length,
       padding: EdgeInsets.all(8),
     );
   }
