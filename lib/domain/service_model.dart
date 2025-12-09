@@ -6,6 +6,7 @@ class ServiceModel {
     required this.rating,
     required this.address,
     this.landmark,
+    this.description,
   });
 
   final String id;
@@ -14,4 +15,5 @@ class ServiceModel {
   final String rating;
   final String address;
   final String? landmark;
+  final String? description;
 }

@@ -6,11 +6,12 @@ class AccommodationModel extends ServiceModel {
     required super.name,
     required super.address,
     required super.rating,
+    required super.landmark,
+    required super.description,
     required this.ownerName,
     required this.ownerContact,
     required this.accommodationType,
     required this.accommodationRate,
-    required super.landmark,
     super.thumbnail = "",
   });
 

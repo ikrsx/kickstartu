@@ -49,6 +49,13 @@ class _AccommodationDetailsBuilder extends StatelessWidget {
 
         // Accommodation Rating Sub-Widget
         RatingRow(value: viewModel.accommodation?.rating ?? ""),
+        SizedBox(height: 5),
+
+        // Accommodation Description Text Sub-Widget
+        Text(
+          viewModel.accommodation?.description ?? "",
+          style: TextStyle(fontSize: 12),
+        ),
 
         // Owner Name Tile Sub-Widget
         ListTile(

@@ -53,6 +53,20 @@ class AccommodationServices {
     }
   }
 
+  // Fetch Accommodation's Description From Services Table
+  Future<String> getAccommodationDescription(String id) async {
+    try {
+      final response = await Supabase.instance.client
+          .from("services")
+          .select("service_description")
+          .eq("service_id", id)
+          .maybeSingle();
+      return response!["service_description"];
+    } on PostgrestException catch (e) {
+      throw Exception(e.message);
+    }
+  }
+
   // Fetch Accommodation's Rating From Services Table
   Future<String> getAccommodationRating(String id) async {
     try {

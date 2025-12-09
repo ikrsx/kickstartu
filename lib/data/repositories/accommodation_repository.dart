@@ -37,6 +37,7 @@ class AccommodationRepository {
       final futures = await Future.wait([
         _services.getAccommodationName(id),
         _services.getAccommodationRating(id),
+        _services.getAccommodationDescription(id),
         _services.getAccommodationOwnerName(id),
         _services.getAccommodationOwnerContact(id),
         _services.getAccommodationType(id),
@@ -49,12 +50,13 @@ class AccommodationRepository {
         id: id,
         name: futures[0],
         rating: futures[1],
-        ownerName: futures[2],
-        ownerContact: futures[3],
-        accommodationType: futures[4],
-        address: futures[5],
-        landmark: futures[6],
-        accommodationRate: futures[7],
+        description: futures[2],
+        ownerName: futures[3],
+        ownerContact: futures[4],
+        accommodationType: futures[5],
+        address: futures[6],
+        landmark: futures[7],
+        accommodationRate: futures[8],
       );
     } catch (e) {
       throw Exception(e.toString());
