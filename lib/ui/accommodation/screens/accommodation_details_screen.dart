@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:kickstartu/ui/core/widgets/service_image_carousel.dart';
 import 'package:kickstartu/ui/accommodation/view_model/accommodation_view_model.dart';
 import 'package:kickstartu/ui/core/widgets/application_error_widget.dart';
 import 'package:kickstartu/ui/core/widgets/rating_row.dart';
@@ -51,7 +52,11 @@ class _AccommodationDetailsBuilder extends StatelessWidget {
         RatingRow(value: viewModel.accommodation?.rating ?? ""),
         SizedBox(height: 5),
 
+        // Accommodation Images Carousel Sub-Widget
+        ServiceImageCarousel(imageUrls: viewModel.accommodation?.images),
+
         // Accommodation Description Text Sub-Widget
+        SizedBox(height: 5),
         Text(
           viewModel.accommodation?.description ?? "",
           style: TextStyle(fontSize: 14),

@@ -7,6 +7,7 @@ class ServiceModel {
     required this.address,
     this.landmark,
     this.description,
+    this.images,
   });
 
   final String id;
@@ -16,4 +17,5 @@ class ServiceModel {
   final String address;
   final String? landmark;
   final String? description;
+  final List<String>? images;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kickstartu/ui/core/widgets/rating_row.dart';
+import 'package:kickstartu/ui/core/widgets/application_network_image.dart';
 
 // Main Service Card List Tile Widget
 class ServiceCardTile extends StatelessWidget {
@@ -59,9 +60,12 @@ class _ServiceThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadiusGeometry.circular(8),
-      child: Image.network(thumbnailUrl),
+    return SizedBox(
+      height: 250,
+      child: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(8),
+        child: ApplicationNetworkImage(imageUrl: thumbnailUrl),
+      ),
     );
   }
 }

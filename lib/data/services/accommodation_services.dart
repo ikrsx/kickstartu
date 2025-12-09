@@ -31,13 +31,36 @@ class AccommodationServices {
   // Fetch Accommodation's Thumbnail From Storage
   Future<String> getAccommodationThumbnail(String id) async {
     try {
+      final bucket = "services";
+
       final response = await Supabase.instance.client.storage
-          .from("services")
+          .from(bucket)
           .list(path: "$id/");
 
       return Supabase.instance.client.storage
-          .from("services/$id")
-          .getPublicUrl(response.first.name);
+          .from(bucket)
+          .getPublicUrl("$id/${response.first.name}");
+    } on StorageException catch (e) {
+      throw Exception(e.message);
+    }
+  }
+
+  // Fetch Accommodation's Images From Storage
+  Future<List<String>> getAccommodationImages(String id) async {
+    try {
+      final bucket = "services";
+
+      final response = await Supabase.instance.client.storage
+          .from(bucket)
+          .list(path: "$id/");
+
+      return response
+          .map(
+            (item) => Supabase.instance.client.storage
+                .from(bucket)
+                .getPublicUrl("$id/${item.name}"),
+          )
+          .toList();
     } on StorageException catch (e) {
       throw Exception(e.message);
     }
@@ -51,6 +74,7 @@ class AccommodationServices {
           .select("service_name")
           .eq("service_id", id)
           .maybeSingle();
+
       return response!["service_name"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
@@ -65,6 +89,7 @@ class AccommodationServices {
           .select("service_description")
           .eq("service_id", id)
           .maybeSingle();
+
       return response!["service_description"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);

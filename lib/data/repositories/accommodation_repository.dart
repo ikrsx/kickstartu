@@ -50,6 +50,7 @@ class AccommodationRepository {
         id: id,
         name: futures[0],
         rating: futures[1],
+        images: await _services.getAccommodationImages(id),
         description: futures[2],
         ownerName: futures[3],
         ownerContact: futures[4],

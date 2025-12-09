@@ -8,6 +8,7 @@ class AccommodationModel extends ServiceModel {
     required super.rating,
     required super.landmark,
     required super.description,
+    required super.images,
     required this.ownerName,
     required this.ownerContact,
     required this.accommodationType,
