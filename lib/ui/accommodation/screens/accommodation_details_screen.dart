@@ -54,7 +54,7 @@ class _AccommodationDetailsBuilder extends StatelessWidget {
         // Accommodation Description Text Sub-Widget
         Text(
           viewModel.accommodation?.description ?? "",
-          style: TextStyle(fontSize: 12),
+          style: TextStyle(fontSize: 14),
         ),
 
         // Owner Name Tile Sub-Widget

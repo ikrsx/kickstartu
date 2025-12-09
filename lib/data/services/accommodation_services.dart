@@ -31,9 +31,13 @@ class AccommodationServices {
   // Fetch Accommodation's Thumbnail From Storage
   Future<String> getAccommodationThumbnail(String id) async {
     try {
+      final response = await Supabase.instance.client.storage
+          .from("services")
+          .list(path: "$id/");
+
       return Supabase.instance.client.storage
           .from("services/$id")
-          .getPublicUrl("thumbnail.jpg");
+          .getPublicUrl(response.first.name);
     } on StorageException catch (e) {
       throw Exception(e.message);
     }
