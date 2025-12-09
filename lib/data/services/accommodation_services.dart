@@ -29,7 +29,7 @@ class AccommodationServices {
   }
 
   // Fetch Accommodation's Thumbnail From Storage
-  Future<String> getAccommodationThumnail(String id) async {
+  Future<String> getAccommodationThumbnail(String id) async {
     try {
       return Supabase.instance.client.storage
           .from("services/$id")

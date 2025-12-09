@@ -16,7 +16,7 @@ class AccommodationRepository {
       final futures = accommodationListMap.map(
         (item) async => ServiceModel(
           id: item["service_id"],
-          thumbnail: await _services.getAccommodationThumnail(
+          thumbnail: await _services.getAccommodationThumbnail(
             item["service_id"],
           ),
           name: item["service_name"],
