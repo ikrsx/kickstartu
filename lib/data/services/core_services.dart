@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-mixin CoreServices {
+class CoreServices {
   // Fetch List Of All Service Category From Services Table
   Future<List<Map<String, dynamic>>> getServices(String category) async {
     try {
@@ -10,11 +10,13 @@ mixin CoreServices {
           .eq("service_category", category);
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting services: $e");
     }
   }
 
   // Fetch Service's Address From Addresses Table
-  Future<String> getServiceAddress(String serviceId) async {
+  Future<String> getAddress(String serviceId) async {
     try {
       final address = await Supabase.instance.client
           .from("addresses")
@@ -27,11 +29,13 @@ mixin CoreServices {
       return "${address["building_number"]}, ${address["street_name"]},${address["city"]},${address["state"]},${address["zip_code"]}";
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting address: $e");
     }
   }
 
   // Fetch Service's Address Landmark From Addresses Table
-  Future<String> getServiceLandmark(String serviceId) async {
+  Future<String> getAddressLandmark(String serviceId) async {
     try {
       final address = await Supabase.instance.client
           .from("addresses")
@@ -44,6 +48,8 @@ mixin CoreServices {
       return address["landmark"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting landmark: $e");
     }
   }
 
@@ -61,6 +67,8 @@ mixin CoreServices {
       return response["owner_name"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting owner name: $e");
     }
   }
 
@@ -78,11 +86,13 @@ mixin CoreServices {
       return response["contact_number"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting owner contact number: $e");
     }
   }
 
   // Fetch Service's Thumbnail From Storage
-  Future<String> getServiceThumbnail(String serviceId) async {
+  Future<String> getThumbnail(String serviceId) async {
     try {
       final bucket = "services";
 
@@ -95,11 +105,13 @@ mixin CoreServices {
           .getPublicUrl("$serviceId/${response.first.name}");
     } on StorageException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting thumbnail: $e");
     }
   }
 
   // Fetch Service's Images From Storage
-  Future<List<String>> getServiceImageUrls(String serviceId) async {
+  Future<List<String>> getImageUrls(String serviceId) async {
     try {
       final bucket = "services";
 
@@ -116,11 +128,13 @@ mixin CoreServices {
           .toList();
     } on StorageException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting images: $e");
     }
   }
 
   // Fetch Service's Name From Services Table
-  Future<String> getServiceName(String serviceId) async {
+  Future<String> getName(String serviceId) async {
     try {
       final response = await Supabase.instance.client
           .from("services")
@@ -133,11 +147,13 @@ mixin CoreServices {
       return response["service_name"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting service name: $e");
     }
   }
 
   // Fetch Service's Description From Services Table
-  Future<String> getServiceDescription(String serviceId) async {
+  Future<String> getDescription(String serviceId) async {
     try {
       final response = await Supabase.instance.client
           .from("services")
@@ -150,11 +166,13 @@ mixin CoreServices {
       return response["service_description"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting service description: $e");
     }
   }
 
   // Fetch Service's Rating From Services Table
-  Future<String> getServiceRating(String serviceId) async {
+  Future<String> getRating(String serviceId) async {
     try {
       final response = await Supabase.instance.client
           .from("services")
@@ -167,6 +185,8 @@ mixin CoreServices {
       return response["service_rating"].toString();
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting service rating: $e");
     }
   }
 }

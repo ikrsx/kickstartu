@@ -1,7 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:kickstartu/data/services/core_services.dart';
 
-class AccommodationServices with CoreServices {
+class AccommodationServices {
   // Fetch Accommodation's Type From Accommodations Table
   Future<String> getAccommodationType(String accommodatioId) async {
     try {
@@ -16,6 +15,8 @@ class AccommodationServices with CoreServices {
       return response["accommodation_type"];
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting accommodation type: $e");
     }
   }
 
@@ -33,6 +34,8 @@ class AccommodationServices with CoreServices {
       return response["accommodation_rate"].toString();
     } on PostgrestException catch (e) {
       throw Exception(e.message);
+    } catch (e) {
+      throw Exception("Error in getting accommodation rate: $e");
     }
   }
 }

@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:kickstartu/ui/core/view_model/main_screen_view_model.dart';
+import 'package:kickstartu/ui/accommodation/widgets/accommodation_list_builder.dart';
+import 'package:kickstartu/ui/food_service/widgets/food_service_list_builder.dart';
+import 'package:kickstartu/data/repositories/food_service_repositories.dart';
+import 'package:kickstartu/data/services/food_service_services.dart';
+import 'package:kickstartu/ui/food_service/view_model/food_service_view_model.dart';
+import 'package:kickstartu/data/repositories/core_repository.dart';
+import 'package:kickstartu/data/services/core_services.dart';
 import 'package:kickstartu/data/repositories/accommodation_repository.dart';
 import 'package:kickstartu/data/services/accommodation_services.dart';
 import 'package:kickstartu/ui/accommodation/view_model/accommodation_view_model.dart';
@@ -20,15 +28,37 @@ class ApplicationLists {
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.food_bank_rounded),
-      label: "Tiffins",
+      label: "Foods",
     ),
+  ];
+
+  // List Of List Builders Used In Main Screen's Navigation Bar
+  final List<Widget> buildersList = [
+    AccommodationListBuilder(),
+    FoodServiceListBuilder(),
   ];
 
   // List Of Providers Used In Application
   final List<SingleChildWidget> applicaitionProviders = [
+    ChangeNotifierProvider(create: (_) => MainScreenViewModel()),
+
     ChangeNotifierProvider(
       create: (_) => AccommodationViewModel(
-        AccommodationRepository(AccommodationServices()),
+        coreRepository: CoreRepository(coreServices: CoreServices()),
+        accommodationRepository: AccommodationRepository(
+          accommodationServices: AccommodationServices(),
+          coreServices: CoreServices(),
+        ),
+      ),
+    ),
+
+    ChangeNotifierProvider(
+      create: (_) => FoodServiceViewModel(
+        coreRepository: CoreRepository(coreServices: CoreServices()),
+        foodServiceRepository: FoodServiceRepositories(
+          foodServicesServices: FoodServiceServices(),
+          coreServices: CoreServices(),
+        ),
       ),
     ),
   ];

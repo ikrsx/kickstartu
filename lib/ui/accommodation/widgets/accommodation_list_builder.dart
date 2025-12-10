@@ -11,7 +11,7 @@ class AccommodationListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<AccommodationViewModel>(context);
-    viewModel.getAccommodations();
+    viewModel.listAccommodations();
 
     if (viewModel.accommodations.isEmpty) {
       return Center(child: CircularProgressIndicator());
@@ -23,7 +23,7 @@ class AccommodationListBuilder extends StatelessWidget {
 
     return ListView.builder(
       itemBuilder: (_, index) => ServiceCardTile(
-        // Values of Fetched Cards
+        // Value Feilds of Fetched Cards
         thumbnailUrl: viewModel.accommodations[index].thumbnailUrl,
         titleString: viewModel.accommodations[index].name,
         ratingValue: viewModel.accommodations[index].rating,

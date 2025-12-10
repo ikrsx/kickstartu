@@ -9,15 +9,13 @@ class AccommodationModel extends ServiceModel {
     required super.landmark,
     required super.description,
     required super.imageUrls,
-    required this.ownerName,
-    required this.ownerContact,
+    required super.ownerName,
+    required super.ownerContact,
     required this.accommodationType,
     required this.accommodationRate,
     super.thumbnailUrl = "",
   });
 
-  final String ownerName;
-  final String ownerContact;
   final String accommodationType;
   final String accommodationRate;
 }

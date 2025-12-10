@@ -5,6 +5,8 @@ class ServiceModel {
     required this.name,
     required this.rating,
     required this.address,
+    this.ownerName,
+    this.ownerContact,
     this.landmark,
     this.description,
     this.imageUrls,
@@ -17,5 +19,7 @@ class ServiceModel {
   final String address;
   final String? landmark;
   final String? description;
+  final String? ownerName;
+  final String? ownerContact;
   final List<String>? imageUrls;
 }
