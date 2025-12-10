@@ -24,7 +24,7 @@ class AccommodationListBuilder extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (_, index) => ServiceCardTile(
         // Values of Fetched Cards
-        thumbnailUrl: viewModel.accommodations[index].thumbnail,
+        thumbnailUrl: viewModel.accommodations[index].thumbnailUrl,
         titleString: viewModel.accommodations[index].name,
         ratingValue: viewModel.accommodations[index].rating,
         addressString: viewModel.accommodations[index].address,
@@ -33,7 +33,7 @@ class AccommodationListBuilder extends StatelessWidget {
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => AccommodationDetailsScreen(
-              id: viewModel.accommodations[index].id,
+              serviceId: viewModel.accommodations[index].id,
             ),
           ),
         ),

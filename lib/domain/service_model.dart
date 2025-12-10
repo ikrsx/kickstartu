@@ -1,21 +1,21 @@
 class ServiceModel {
   ServiceModel({
     required this.id,
-    required this.thumbnail,
+    required this.thumbnailUrl,
     required this.name,
     required this.rating,
     required this.address,
     this.landmark,
     this.description,
-    this.images,
+    this.imageUrls,
   });
 
   final String id;
-  final String thumbnail;
+  final String thumbnailUrl;
   final String name;
   final String rating;
   final String address;
   final String? landmark;
   final String? description;
-  final List<String>? images;
+  final List<String>? imageUrls;
 }
