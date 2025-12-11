@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-import 'package:kickstartu/data/repositories/food_service_repositories.dart';
+import 'package:kickstartu/data/repositories/shop_repositories.dart';
 import 'package:kickstartu/config/application_strings.dart';
 import 'package:kickstartu/data/repositories/core_repository.dart';
 import 'package:kickstartu/domain/service_model.dart';
 
-class FoodServiceViewModel extends ChangeNotifier {
-  FoodServiceViewModel({
-    required FoodServiceRepositories foodServiceRepository,
+class ShopViewModel extends ChangeNotifier {
+  ShopViewModel({
+    required ShopRepositories shopRepository,
     required CoreRepository coreRepository,
-  }) : _foodServiceRepository = foodServiceRepository,
+  }) : _shopRepository = shopRepository,
        _coreRepository = coreRepository;
 
-  final FoodServiceRepositories _foodServiceRepository;
+  final ShopRepositories _shopRepository;
   final CoreRepository _coreRepository;
 
-  List<ServiceModel> _foodServices = [];
-  dynamic _foodService;
+  List<ServiceModel> _shops = [];
+  dynamic _shop;
   String? _error;
   final Logger _logger = Logger();
 
-  List<ServiceModel> get foodServices => _foodServices;
-  dynamic get foodService => _foodService;
+  List<ServiceModel> get shops => _shops;
+  dynamic get shop => _shop;
   String? get error => _error;
 
-  // Get List Of Food Services From Core Repository
-  Future<void> listFoodServices() async {
+  // Get List Of Shops From Core Repository
+  Future<void> listShops() async {
     try {
-      _foodServices = await _coreRepository.buildServiceModelList(
-        "food_service",
-      );
+      _shops = await _coreRepository.buildServiceModelList("shop");
       notifyListeners();
     } catch (e) {
       _error = ApplicationStrings.instance.errorMessage;
@@ -38,9 +36,9 @@ class FoodServiceViewModel extends ChangeNotifier {
   }
 
   // Get Details Of Food Service From Food Service Repository
-  Future<void> getFoodServiceDetails(String id) async {
+  Future<void> getShopDetails(String id) async {
     try {
-      _foodService = await _foodServiceRepository.buildFoodServiceModel(id);
+      _shop = await _shopRepository.buildShopModel(id);
       notifyListeners();
     } catch (e) {
       _error = ApplicationStrings.instance.errorMessage;

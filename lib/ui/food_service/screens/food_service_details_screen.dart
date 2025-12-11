@@ -17,7 +17,7 @@ class FoodServiceDetailsScreen extends StatelessWidget {
   }
 }
 
-// Fetched Accommodation Details Builder Sub-Widget
+// Fetched Food Service Details Builder Sub-Widget
 class _FoodServiceDetailsBuilder extends StatelessWidget {
   const _FoodServiceDetailsBuilder({required this.serviceId});
 
@@ -26,7 +26,7 @@ class _FoodServiceDetailsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<FoodServiceViewModel>(context);
-    viewModel.getAccommodationDetails(serviceId);
+    viewModel.getFoodServiceDetails(serviceId);
 
     if (viewModel.foodService == null) {
       return Center(child: CircularProgressIndicator());
@@ -42,13 +42,13 @@ class _FoodServiceDetailsBuilder extends StatelessWidget {
         // Screen Title Sub-Widget
         ServiceNameText(serviceName: viewModel.foodService.name),
 
-        // Accommodation Rating Sub-Widget
+        // Food Service Rating Sub-Widget
         RatingRow(value: viewModel.foodService.rating),
 
-        // Accommodation Images Carousel Sub-Widget
+        // Food Service Images Carousel Sub-Widget
         ServiceImageCarousel(imageUrls: viewModel.foodService.imageUrls),
 
-        // Accommodation Description Text Sub-Widget
+        // Food Service Description Text Sub-Widget
         ServiceDescriptionText(
           serviceDescription: viewModel.foodService.description,
         ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:kickstartu/data/repositories/shop_repositories.dart';
+import 'package:kickstartu/data/services/shop_services.dart';
+import 'package:kickstartu/ui/shop/view_model/shop_view_model.dart';
+import 'package:kickstartu/ui/shop/widgets/shop_list_builder.dart';
 import 'package:kickstartu/ui/core/view_model/main_screen_view_model.dart';
 import 'package:kickstartu/ui/accommodation/widgets/accommodation_list_builder.dart';
 import 'package:kickstartu/ui/food_service/widgets/food_service_list_builder.dart';
@@ -24,11 +28,15 @@ class ApplicationLists {
   final List<BottomNavigationBarItem> navBarItems = [
     BottomNavigationBarItem(
       icon: Icon(Icons.business_rounded),
-      label: "Accommodations",
+      label: "Stayings",
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.food_bank_rounded),
       label: "Foods",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_bag_rounded),
+      label: "Shops",
     ),
   ];
 
@@ -36,12 +44,15 @@ class ApplicationLists {
   final List<Widget> buildersList = [
     AccommodationListBuilder(),
     FoodServiceListBuilder(),
+    ShopListBuilder(),
   ];
 
   // List Of Providers Used In Application
   final List<SingleChildWidget> applicaitionProviders = [
+    // Main Screen
     ChangeNotifierProvider(create: (_) => MainScreenViewModel()),
 
+    // Accommodation
     ChangeNotifierProvider(
       create: (_) => AccommodationViewModel(
         coreRepository: CoreRepository(coreServices: CoreServices()),
@@ -52,11 +63,23 @@ class ApplicationLists {
       ),
     ),
 
+    // Food Service
     ChangeNotifierProvider(
       create: (_) => FoodServiceViewModel(
         coreRepository: CoreRepository(coreServices: CoreServices()),
         foodServiceRepository: FoodServiceRepositories(
           foodServicesServices: FoodServiceServices(),
+          coreServices: CoreServices(),
+        ),
+      ),
+    ),
+
+    // Shop
+    ChangeNotifierProvider(
+      create: (_) => ShopViewModel(
+        coreRepository: CoreRepository(coreServices: CoreServices()),
+        shopRepository: ShopRepositories(
+          shopServices: ShopServices(),
           coreServices: CoreServices(),
         ),
       ),
