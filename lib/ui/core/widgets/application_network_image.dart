@@ -12,6 +12,8 @@ class ApplicationNetworkImage extends StatelessWidget {
       imageUrl,
       fit: BoxFit.cover,
       errorBuilder: (_, _, _) => _ErrorImageContainer(),
+      cacheWidth: 1280,
+      cacheHeight: 720,
     );
   }
 }

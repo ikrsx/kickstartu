@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:kickstartu/ui/core/widgets/application_error_widget.dart';
-import 'package:kickstartu/ui/core/widgets/rating_row.dart';
-import 'package:kickstartu/ui/core/widgets/service_image_carousel.dart';
+import 'package:kickstartu/ui/core/core_widgets_exports.dart';
 import 'package:kickstartu/ui/food_service/view_model/food_service_view_model.dart';
 
 class FoodServiceDetailsScreen extends StatelessWidget {
@@ -42,7 +40,7 @@ class _FoodServiceDetailsBuilder extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       children: [
         // Screen Title Sub-Widget
-        Text(viewModel.foodService.name, style: TextStyle(fontSize: 26)),
+        ServiceNameText(serviceName: viewModel.foodService.name),
 
         // Accommodation Rating Sub-Widget
         RatingRow(value: viewModel.foodService.rating),
@@ -51,37 +49,21 @@ class _FoodServiceDetailsBuilder extends StatelessWidget {
         ServiceImageCarousel(imageUrls: viewModel.foodService.imageUrls),
 
         // Accommodation Description Text Sub-Widget
-        Text(viewModel.foodService.description, style: TextStyle(fontSize: 14)),
+        ServiceDescriptionText(
+          serviceDescription: viewModel.foodService.description,
+        ),
 
         // Owner Name Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.person_rounded),
-          title: Text(viewModel.foodService.ownerName),
-          contentPadding: EdgeInsets.all(0),
-        ),
+        ServiceOwnerNameTile(ownerName: viewModel.foodService.ownerName),
 
         // Owner Contact Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.phone_rounded),
-          title: Text(viewModel.foodService.ownerContact),
-          contentPadding: EdgeInsets.all(0),
-          onTap: () {},
-        ),
+        ServiceOwnerContactTile(ownerContact: viewModel.foodService.ownerName),
 
         // Address Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.pin_drop_rounded),
-          title: Text(viewModel.foodService.address),
-          contentPadding: EdgeInsets.all(0),
-          onTap: () {},
-        ),
+        ServiceAddressTile(serviceAddress: viewModel.foodService.address),
 
         // Landmark Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.flag_rounded),
-          title: Text(viewModel.foodService.landmark),
-          contentPadding: EdgeInsets.all(0),
-        ),
+        ServiceLandmarkTile(serviceLandmark: viewModel.foodService.landmark),
       ],
     );
   }

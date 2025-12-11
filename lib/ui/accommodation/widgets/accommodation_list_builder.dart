@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:kickstartu/ui/core/widgets/service_card_tile.dart';
-import 'package:kickstartu/ui/core/widgets/application_error_widget.dart';
-import 'package:kickstartu/ui/accommodation/screens/accommodation_details_screen.dart';
+import 'package:kickstartu/ui/core/core_widgets_exports.dart';
 import 'package:kickstartu/ui/accommodation/view_model/accommodation_view_model.dart';
+import 'package:kickstartu/ui/accommodation/screens/accommodation_details_screen.dart';
 
 class AccommodationListBuilder extends StatelessWidget {
   const AccommodationListBuilder({super.key});

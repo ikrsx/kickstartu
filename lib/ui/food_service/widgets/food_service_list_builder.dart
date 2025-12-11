@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kickstartu/ui/core/widgets/application_error_widget.dart';
-import 'package:kickstartu/ui/food_service/screens/food_service_details_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:kickstartu/ui/core/widgets/service_card_tile.dart';
+import 'package:kickstartu/ui/core/core_widgets_exports.dart';
+import 'package:kickstartu/ui/food_service/screens/food_service_details_screen.dart';
 import 'package:kickstartu/ui/food_service/view_model/food_service_view_model.dart';
 
 class FoodServiceListBuilder extends StatelessWidget {

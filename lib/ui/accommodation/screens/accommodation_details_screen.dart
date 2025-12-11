@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:kickstartu/ui/core/widgets/service_image_carousel.dart';
+import 'package:kickstartu/ui/core/core_widgets_exports.dart';
 import 'package:kickstartu/ui/accommodation/view_model/accommodation_view_model.dart';
-import 'package:kickstartu/ui/core/widgets/application_error_widget.dart';
-import 'package:kickstartu/ui/core/widgets/rating_row.dart';
 
 // Accommodation Details Screen Widget
 class AccommodationDetailsScreen extends StatelessWidget {
@@ -43,7 +41,7 @@ class _AccommodationDetailsBuilder extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       children: [
         // Screen Title Sub-Widget
-        Text(viewModel.accommodation.name, style: TextStyle(fontSize: 26)),
+        ServiceNameText(serviceName: viewModel.accommodation.name),
 
         // Accommodation Rating Sub-Widget
         RatingRow(value: viewModel.accommodation.rating),
@@ -52,55 +50,65 @@ class _AccommodationDetailsBuilder extends StatelessWidget {
         ServiceImageCarousel(imageUrls: viewModel.accommodation.imageUrls),
 
         // Accommodation Description Text Sub-Widget
-        Text(
-          viewModel.accommodation.description,
-          style: TextStyle(fontSize: 14),
+        ServiceDescriptionText(
+          serviceDescription: viewModel.accommodation.description,
         ),
 
         // Owner Name Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.person_rounded),
-          title: Text(viewModel.accommodation.ownerName),
-          contentPadding: EdgeInsets.all(0),
-        ),
+        ServiceOwnerNameTile(ownerName: viewModel.accommodation.ownerName),
 
         // Owner Contact Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.phone_rounded),
-          title: Text(viewModel.accommodation.ownerContact),
-          contentPadding: EdgeInsets.all(0),
-          onTap: () {},
-        ),
-
-        // Accommodation Type Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.category_rounded),
-          title: Text(viewModel.accommodation.accommodationType),
-          contentPadding: EdgeInsets.all(0),
+        ServiceOwnerContactTile(
+          ownerContact: viewModel.accommodation.ownerContact,
         ),
 
         // Address Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.pin_drop_rounded),
-          title: Text(viewModel.accommodation.address),
-          contentPadding: EdgeInsets.all(0),
-          onTap: () {},
-        ),
+        ServiceAddressTile(serviceAddress: viewModel.accommodation.address),
 
         // Landmark Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.flag_rounded),
-          title: Text(viewModel.accommodation.landmark),
-          contentPadding: EdgeInsets.all(0),
+        ServiceLandmarkTile(serviceLandmark: viewModel.accommodation.landmark),
+
+        // Accommodation Type Tile Sub-Widget
+        _AccommodationTypeTile(
+          accommodationType: viewModel.accommodation.accommodationType,
         ),
 
         // Rate Tile Sub-Widget
-        ListTile(
-          leading: Icon(Icons.currency_rupee_rounded),
-          title: Text(viewModel.accommodation.accommodationRate),
-          contentPadding: EdgeInsets.all(0),
+        _AccommodationRateTile(
+          accommodationRate: viewModel.accommodation.accommodationRate,
         ),
       ],
+    );
+  }
+}
+
+// Accommodation Rate Tile Sub-Widget
+class _AccommodationRateTile extends StatelessWidget {
+  const _AccommodationRateTile({required this.accommodationRate});
+
+  final String accommodationRate;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.currency_rupee_rounded),
+      title: Text(accommodationRate),
+      contentPadding: EdgeInsets.all(0),
+    );
+  }
+}
+
+// Accommodation Type Tile Sub-Widget
+class _AccommodationTypeTile extends StatelessWidget {
+  const _AccommodationTypeTile({required this.accommodationType});
+  final String accommodationType;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.category_rounded),
+      title: Text(accommodationType),
+      contentPadding: EdgeInsets.all(0),
     );
   }
 }

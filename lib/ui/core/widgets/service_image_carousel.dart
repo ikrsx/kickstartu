@@ -8,15 +8,15 @@ class ServiceImageCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Calucate The Height Based On Screen Orentaion
+    final oreintation = MediaQuery.of(context).orientation;
+    final currentHeight = oreintation == Orientation.landscape
+        ? MediaQuery.of(context).size.height * 0.76
+        : MediaQuery.of(context).size.height * 0.35;
+
     return Container(
       padding: EdgeInsets.all(8),
-
-      // Calucate The Height Based On Screen Orentaion
-      height: MediaQuery.of(context).orientation == Orientation.landscape
-          ? MediaQuery.of(context).size.height * 0.76
-          : MediaQuery.of(context).size.height * 0.35,
-
-      // Main Carousel View
+      height: currentHeight,
       child: CarouselView(
         itemExtent: MediaQuery.of(context).size.width * 0.76,
         itemSnapping: true,
