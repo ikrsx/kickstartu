@@ -69,9 +69,7 @@ class _AccommodationDetailsBuilder extends StatelessWidget {
         ServiceLandmarkTile(serviceLandmark: viewModel.accommodation.landmark),
 
         // Accommodation Type Tile Sub-Widget
-        _AccommodationTypeTile(
-          accommodationType: viewModel.accommodation.accommodationType,
-        ),
+        ServiceTypeTile(serviceType: viewModel.accommodation.accommodationType),
 
         // Rate Tile Sub-Widget
         _AccommodationRateTile(
@@ -93,21 +91,6 @@ class _AccommodationRateTile extends StatelessWidget {
     return ListTile(
       leading: Icon(Icons.currency_rupee_rounded),
       title: Text(accommodationRate),
-      contentPadding: EdgeInsets.all(0),
-    );
-  }
-}
-
-// Accommodation Type Tile Sub-Widget
-class _AccommodationTypeTile extends StatelessWidget {
-  const _AccommodationTypeTile({required this.accommodationType});
-  final String accommodationType;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(Icons.category_rounded),
-      title: Text(accommodationType),
       contentPadding: EdgeInsets.all(0),
     );
   }

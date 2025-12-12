@@ -11,6 +11,9 @@ class ShopModel extends ServiceModel {
     required super.address,
     required super.landmark,
     required super.rating,
+    required this.shopType,
     super.thumbnailUrl = "",
   });
+
+  final String shopType;
 }

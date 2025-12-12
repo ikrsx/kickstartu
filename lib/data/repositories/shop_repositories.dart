@@ -10,8 +10,6 @@ class ShopRepositories {
        _shopServices = shopServices;
 
   final CoreServices _coreServices;
-
-  // ignore: unused_field
   final ShopServices _shopServices;
 
   Future<ShopModel> buildShopModel(String shopId) async {
@@ -24,6 +22,7 @@ class ShopRepositories {
         _coreServices.getOwnerContact(shopId),
         _coreServices.getAddress(shopId),
         _coreServices.getAddressLandmark(shopId),
+        _shopServices.getShopType(shopId),
       ]);
 
       return ShopModel(
@@ -36,6 +35,7 @@ class ShopRepositories {
         ownerContact: futures[4],
         address: futures[5],
         landmark: futures[6],
+        shopType: futures[7],
       );
     } catch (e) {
       throw Exception(e.toString());

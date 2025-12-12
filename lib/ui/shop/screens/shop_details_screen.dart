@@ -62,6 +62,9 @@ class _ShopDetailsBuilder extends StatelessWidget {
 
         // Landmark Tile Sub-Widget
         ServiceLandmarkTile(serviceLandmark: viewModel.shop.landmark),
+
+        // Food Service Type Sub-Widget
+        ServiceTypeTile(serviceType: viewModel.shop.shopType),
       ],
     );
   }

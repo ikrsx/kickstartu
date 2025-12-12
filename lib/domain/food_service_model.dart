@@ -11,6 +11,9 @@ class FoodServiceModel extends ServiceModel {
     required super.address,
     required super.landmark,
     required super.rating,
+    required this.foodServiceType,
     super.thumbnailUrl = "",
   });
+
+  final String foodServiceType;
 }

@@ -2,12 +2,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccommodationServices {
   // Fetch Accommodation's Type From Accommodations Table
-  Future<String> getAccommodationType(String accommodatioId) async {
+  Future<String> getAccommodationType(String accommodationId) async {
     try {
       final response = await Supabase.instance.client
           .from("accommodations")
           .select("accommodation_type")
-          .eq("accommodation_id", accommodatioId)
+          .eq("accommodation_id", accommodationId)
           .maybeSingle();
 
       if (response == null) return "";

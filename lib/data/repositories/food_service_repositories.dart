@@ -5,13 +5,12 @@ import 'package:kickstartu/domain/food_service_model.dart';
 class FoodServiceRepositories {
   FoodServiceRepositories({
     required CoreServices coreServices,
-    required FoodServiceServices foodServicesServices,
+    required FoodServiceServices foodServiceServices,
   }) : _coreServices = coreServices,
-       _foodServicesServices = foodServicesServices;
+       _foodServiceServices = foodServiceServices;
 
   final CoreServices _coreServices;
-  // ignore: unused_field
-  final FoodServiceServices _foodServicesServices;
+  final FoodServiceServices _foodServiceServices;
 
   Future<FoodServiceModel> buildFoodServiceModel(String id) async {
     try {
@@ -23,6 +22,7 @@ class FoodServiceRepositories {
         _coreServices.getOwnerContact(id),
         _coreServices.getAddress(id),
         _coreServices.getAddressLandmark(id),
+        _foodServiceServices.getFoodServiceType(id),
       ]);
 
       return FoodServiceModel(
@@ -35,6 +35,7 @@ class FoodServiceRepositories {
         ownerContact: futures[4],
         address: futures[5],
         landmark: futures[6],
+        foodServiceType: futures[7],
       );
     } catch (e) {
       throw Exception(e.toString());

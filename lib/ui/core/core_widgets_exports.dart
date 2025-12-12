@@ -11,3 +11,4 @@ export 'widgets/service_address_tile.dart';
 export 'widgets/service_card_tile.dart';
 export 'widgets/service_image_carousel.dart';
 export 'widgets/service_landmark_tile.dart';
+export 'widgets/service_type_tile.dart';

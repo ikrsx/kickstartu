@@ -68,7 +68,7 @@ class ApplicationLists {
       create: (_) => FoodServiceViewModel(
         coreRepository: CoreRepository(coreServices: CoreServices()),
         foodServiceRepository: FoodServiceRepositories(
-          foodServicesServices: FoodServiceServices(),
+          foodServiceServices: FoodServiceServices(),
           coreServices: CoreServices(),
         ),
       ),
