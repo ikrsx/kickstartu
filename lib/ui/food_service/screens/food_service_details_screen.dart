@@ -57,7 +57,9 @@ class _FoodServiceDetailsBuilder extends StatelessWidget {
         ServiceOwnerNameTile(ownerName: viewModel.foodService.ownerName),
 
         // Owner Contact Tile Sub-Widget
-        ServiceOwnerContactTile(ownerContact: viewModel.foodService.ownerName),
+        ServiceOwnerContactTile(
+          ownerContact: viewModel.foodService.ownerContact,
+        ),
 
         // Address Tile Sub-Widget
         ServiceAddressTile(serviceAddress: viewModel.foodService.address),

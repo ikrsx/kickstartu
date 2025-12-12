@@ -55,7 +55,7 @@ class _ShopDetailsBuilder extends StatelessWidget {
         ServiceOwnerNameTile(ownerName: viewModel.shop.ownerName),
 
         // Owner Contact Tile Sub-Widget
-        ServiceOwnerContactTile(ownerContact: viewModel.shop.ownerName),
+        ServiceOwnerContactTile(ownerContact: viewModel.shop.ownerContact),
 
         // Address Tile Sub-Widget
         ServiceAddressTile(serviceAddress: viewModel.shop.address),
