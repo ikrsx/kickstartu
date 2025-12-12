@@ -5,7 +5,7 @@ import 'package:kickstartu/data/repositories/shop_repositories.dart';
 import 'package:kickstartu/data/services/shop_services.dart';
 import 'package:kickstartu/ui/shop/view_model/shop_view_model.dart';
 import 'package:kickstartu/ui/shop/widgets/shop_list_builder.dart';
-import 'package:kickstartu/ui/core/view_model/main_screen_view_model.dart';
+import 'package:kickstartu/ui/core/view_model/core_view_model.dart';
 import 'package:kickstartu/ui/accommodation/widgets/accommodation_list_builder.dart';
 import 'package:kickstartu/ui/food_service/widgets/food_service_list_builder.dart';
 import 'package:kickstartu/data/repositories/food_service_repositories.dart';
@@ -50,7 +50,7 @@ class ApplicationLists {
   // List Of Providers Used In Application
   final List<SingleChildWidget> applicaitionProviders = [
     // Main Screen
-    ChangeNotifierProvider(create: (_) => MainScreenViewModel()),
+    ChangeNotifierProvider(create: (_) => CoreViewModel()),
 
     // Accommodation
     ChangeNotifierProvider(

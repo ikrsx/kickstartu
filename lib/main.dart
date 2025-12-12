@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kickstartu/ui/core/core_widgets_exports.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:kickstartu/config/application_lists.dart';
 import 'package:kickstartu/config/application_strings.dart';
-import 'package:kickstartu/ui/core/screens/application_main_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +28,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: ApplicationMainScreen());
+    final viewModel = Provider.of<CoreViewModel>(context);
+
+    return MaterialApp(
+      home: ApplicationMainScreen(),
+      theme: viewModel.currentTheme,
+    );
   }
 }

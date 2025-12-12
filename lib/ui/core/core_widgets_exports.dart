@@ -1,5 +1,5 @@
 export 'screens/application_main_screen.dart';
-export 'view_model/main_screen_view_model.dart';
+export 'view_model/core_view_model.dart';
 export 'widgets/service_description_text.dart';
 export 'widgets/service_name_text.dart';
 export 'widgets/application_error_widget.dart';
