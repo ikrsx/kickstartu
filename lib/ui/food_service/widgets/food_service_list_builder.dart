@@ -20,7 +20,7 @@ class FoodServiceListBuilder extends StatelessWidget {
       return ApplicationErrorWidget(errorString: viewModel.error!);
     }
 
-    return ListView.builder(
+    return GridView.builder(
       itemBuilder: (_, index) => ServiceCardTile(
         // Value Feilds of Fetched Cards
         thumbnailUrl: viewModel.foodServices[index].thumbnailUrl,
@@ -39,6 +39,10 @@ class FoodServiceListBuilder extends StatelessWidget {
       ),
       itemCount: viewModel.foodServices.length,
       padding: EdgeInsets.all(8),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount:
+            MediaQuery.of(context).orientation == Orientation.landscape ? 2 : 1,
+      ),
     );
   }
 }

@@ -20,7 +20,7 @@ class ShopListBuilder extends StatelessWidget {
       return ApplicationErrorWidget(errorString: viewModel.error!);
     }
 
-    return ListView.builder(
+    return GridView.builder(
       itemBuilder: (_, index) => ServiceCardTile(
         // Value Feilds of Fetched Cards
         thumbnailUrl: viewModel.shops[index].thumbnailUrl,
@@ -38,6 +38,10 @@ class ShopListBuilder extends StatelessWidget {
       ),
       itemCount: viewModel.shops.length,
       padding: EdgeInsets.all(8),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount:
+            MediaQuery.of(context).orientation == Orientation.landscape ? 2 : 1,
+      ),
     );
   }
 }
