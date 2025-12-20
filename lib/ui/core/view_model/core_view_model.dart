@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class CoreViewModel extends ChangeNotifier {
-  int _value = 0;
+  int _navBarIndex = 0;
   Brightness? _currentBrightness =
       PlatformDispatcher.instance.platformBrightness;
 
-  int get value => _value;
+  int get navBarIndex => _navBarIndex;
 
   IconData? get currentIcon => _currentBrightness == Brightness.dark
       ? Icons.brightness_2_rounded
@@ -16,12 +16,14 @@ class CoreViewModel extends ChangeNotifier {
       ? ThemeData.dark()
       : ThemeData.light();
 
+  // Change The Index When Navbar Icon Is Tapped
   Future<void> onNavbarIconTap(int currentValue) async {
-    _value = currentValue;
+    _navBarIndex = currentValue;
     notifyListeners();
   }
 
-  Future<void> changeTheme() async {
+  // Change The Theme When Brightness Icon Is Tapped
+  Future<void> onBrightnessIconTap() async {
     _currentBrightness = _currentBrightness == Brightness.dark
         ? Brightness.light
         : Brightness.dark;

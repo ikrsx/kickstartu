@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:kickstartu/config/application_lists.dart';
-import 'package:kickstartu/config/application_strings.dart';
+import 'package:kickstartu/config/configs_exports.dart';
 import 'package:kickstartu/ui/core/view_model/core_view_model.dart';
 
 // Main Screen Widget
@@ -17,12 +16,13 @@ class ApplicationMainScreen extends StatelessWidget {
         title: _MainScreenAppBarTitle(),
         actions: [_ThemeToggleButton(mainScreenViewModel: viewModel)],
       ),
-      body: ApplicationLists.instance.buildersList[viewModel.value],
+      body: ApplicationLists.instance.buildersList[viewModel.navBarIndex],
       bottomNavigationBar: _ApplicationBottomNavigationBar(),
     );
   }
 }
 
+// Main Screen's App Bar Theme Togggle Button Sub-Widget
 class _ThemeToggleButton extends StatelessWidget {
   const _ThemeToggleButton({required this.mainScreenViewModel});
 
@@ -31,7 +31,7 @@ class _ThemeToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: mainScreenViewModel.changeTheme,
+      onPressed: mainScreenViewModel.onBrightnessIconTap,
       icon: Icon(mainScreenViewModel.currentIcon),
     );
   }
@@ -61,7 +61,7 @@ class _ApplicationBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       items: ApplicationLists.instance.navBarItems,
       elevation: 0,
-      currentIndex: viewModel.value,
+      currentIndex: viewModel.navBarIndex,
       onTap: (value) => viewModel.onNavbarIconTap(value),
     );
   }
