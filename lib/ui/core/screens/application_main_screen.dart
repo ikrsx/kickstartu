@@ -16,8 +16,10 @@ class ApplicationMainScreen extends StatelessWidget {
         title: _MainScreenAppBarTitle(),
         actions: [_ThemeToggleButton(mainScreenViewModel: viewModel)],
       ),
-      body: ApplicationLists.instance.buildersList[viewModel.navBarIndex],
+      body: ApplicationLists.instance.listViewsList[viewModel.navBarIndex],
       bottomNavigationBar: _ApplicationBottomNavigationBar(),
+      floatingActionButton:
+          ApplicationLists.instance.fabList[viewModel.navBarIndex],
     );
   }
 }
@@ -63,6 +65,8 @@ class _ApplicationBottomNavigationBar extends StatelessWidget {
       elevation: 0,
       currentIndex: viewModel.navBarIndex,
       onTap: (value) => viewModel.onNavbarIconTap(value),
+      selectedFontSize: 12,
+      type: BottomNavigationBarType.fixed,
     );
   }
 }

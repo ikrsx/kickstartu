@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:kickstartu/ui/accommodation/widgets/accommodation_filter_button.dart';
+import 'package:kickstartu/ui/food_service/widgets/food_service_filter_button.dart';
+import 'package:kickstartu/ui/shop/widgets/shop_filter_button.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:kickstartu/data/repositories/shop_repositories.dart';
 import 'package:kickstartu/data/services/shop_services.dart';
+import 'package:kickstartu/ui/faq/widgets/faq_list_view.dart';
+import 'package:kickstartu/ui/transport/widgets/transport_list_builder.dart';
 import 'package:kickstartu/ui/shop/view_model/shop_view_model.dart';
 import 'package:kickstartu/ui/shop/widgets/shop_list_builder.dart';
 import 'package:kickstartu/ui/core/view_model/core_view_model.dart';
@@ -38,13 +43,32 @@ class ApplicationLists {
       icon: Icon(Icons.shopping_bag_rounded),
       label: "Shops",
     ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.bus_alert_rounded),
+      label: "Transports",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.question_answer_rounded),
+      label: "FAQs",
+    ),
   ];
 
   // List Of List Builders Used In Main Screen's Navigation Bar
-  final List<Widget> buildersList = [
+  final List<Widget> listViewsList = [
     AccommodationListBuilder(),
     FoodServiceListBuilder(),
     ShopListBuilder(),
+    TransportListBuilder(),
+    FaqListView(),
+  ];
+
+  // List Of FAB Used In Main Screen's Navigation Bar
+  final List<Widget> fabList = [
+    AccommodationFilterButton(),
+    FoodServiceFilterButton(),
+    ShopFilterButton(),
+    ShopFilterButton(), // TODO: For Transport
+    ShopFilterButton(), // TODO: For FAQ
   ];
 
   // List Of Providers Used In Application
